@@ -7,14 +7,12 @@ public class Contact {
     private String name;
     private String mobile;
     private String email;
-    private Map<String,String> properties;
     private List<String> contactDetails = Arrays.asList();
 
-    public Contact(String name, String mobile, String email, Map<String,String> properties) {
+    public Contact(String name, String mobile, String email) {
         this.name = name;
         this.mobile = mobile;
         this.email = email;
-        this.properties = properties;
     }
 
     public String getName() {
@@ -47,9 +45,7 @@ public class Contact {
     }
 
     public String toString(){
-        return String.format("name=%s, mobile=%s, email=%s ", name, mobile, email)
-                + properties ;
-
+        return String.format("name=%s, mobile=%s, email=%s ", name, mobile, email);
     }
 }
 
