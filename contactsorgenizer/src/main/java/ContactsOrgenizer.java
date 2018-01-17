@@ -11,7 +11,7 @@ class ContactsOrgenizer {
         String fn = "contents_data.txt";
         contactsManager.read(fn);
         Boolean respBool;
-        int choice = 0;
+        int choice;
         int menu = 0;
         Scanner input = new Scanner(System.in);
 
@@ -24,17 +24,12 @@ class ContactsOrgenizer {
             System.out.println(" 6. Save contacts to disk");
             System.out.println(" 7. Read contacts from disk");
             System.out.println(" 8. Exit ");
-
             try {
                 menu = input.nextInt();
             } catch (InputMismatchException ex) {
-                System.out.println("** valid inputs are (1 - 8) **\n");
                 input.nextLine();
             }
-
-
                 choice = 1;
-
             switch (menu) {
                 case 1:
                     while (choice != 2) {
@@ -91,7 +86,7 @@ class ContactsOrgenizer {
                 case 7:
                     contactsManager.read(fn);
                     break;
-                case 0:
+                case 8:
                     break;
                 default:
                     System.out.println("** valid inputs are (1 - 8) **\n");
