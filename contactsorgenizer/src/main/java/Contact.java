@@ -7,27 +7,27 @@ class Contact {
         this.email = email;
     }
 
-    String getName() {
+    public String getName() {
         return name;
     }
 
-    void setName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    String getMobile() {
+    public String getMobile() {
         return mobile;
     }
 
-    void setMobile(String mobile) {
+    public void setMobile(String mobile) {
         this.mobile = mobile;
     }
 
-    String getEmail() {
+    public String getEmail() {
         return email;
     }
 
-    void setEmail(String email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 

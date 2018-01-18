@@ -3,11 +3,8 @@ import java.util.Scanner;
 
 class ContactsOrgenizer {
 
-    String name;
-    String mobile;
-    String email;
 
-    void menu (ContactsManager contactsManager) throws Exception {
+    void menu(ContactsManager contactsManager) throws Exception {
         String fn = "contents_data.txt";
         contactsManager.read(fn);
         Boolean respBool;
@@ -29,7 +26,7 @@ class ContactsOrgenizer {
             } catch (InputMismatchException ex) {
                 input.nextLine();
             }
-                choice = 1;
+            choice = 1;
             switch (menu) {
                 case 1:
                     while (choice != 2) {
@@ -68,10 +65,9 @@ class ContactsOrgenizer {
                     while (choice != 2) {
                         System.out.println("Enter the contact's name, to be queried: ");
                         name = input.next();
-                        if (contactsManager.query(name) == null){
+                        if (contactsManager.query(name) == null) {
                             System.out.format("no contact under the name: %s", name).println();
-                        }
-                        else {
+                        } else {
                             System.out.println(contactsManager.query(name));
                         }
                         choice = verifyUserInput(input, choice);
@@ -98,7 +94,8 @@ class ContactsOrgenizer {
         contactsManager.save();
 
     }
-    private void userContactInputs(Scanner input){
+
+    private void userContactInputs(Scanner input) {
         System.out.println("Enter contacts' name: ");
         name = input.next();
         System.out.println("Enter contacts' mobile: ");
@@ -107,21 +104,26 @@ class ContactsOrgenizer {
         email = input.next();
     }
 
-    private int verifyUserInput(Scanner input, int choice){
+    private int verifyUserInput(Scanner input, int choice) {
         do {
             System.out.println("Enter another? 1: Yes, 2: No");
             try {
                 choice = input.nextInt();
-            } catch (InputMismatchException ex){
+            } catch (InputMismatchException ex) {
                 System.out.println("\n** Error: Invalid input **\n");
                 input.nextLine();
                 choice = 2;
                 return choice;
             }
         }
-        while (choice != 1 && choice != 2); {
+        while (choice != 1 && choice != 2);
+        {
         }
         return choice;
     }
+
+    private String name;
+    private String mobile;
+    private String email;
 
 }

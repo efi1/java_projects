@@ -85,9 +85,7 @@ public class ContactsManager {
         }
     }
 
-
     private Map<String, Contact> contacts = new HashMap<String, Contact>();
-
 
 }
 
