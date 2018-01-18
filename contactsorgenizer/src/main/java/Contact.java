@@ -1,7 +1,7 @@
 
-class Contact {
+public class Contact {
 
-    Contact(String name, String mobile, String email) {
+    public Contact(String name, String mobile, String email) {
         this.name = name;
         this.mobile = mobile;
         this.email = email;

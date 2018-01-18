@@ -5,8 +5,7 @@ class ContactsOrgenizer {
 
 
     void menu(ContactsManager contactsManager) throws Exception {
-        String fn = "contents_data.txt";
-        contactsManager.read(fn);
+
         Boolean respBool;
         int choice;
         int menu = 0;
@@ -18,9 +17,7 @@ class ContactsOrgenizer {
             System.out.println(" 3. Update an exist contact ");
             System.out.println(" 4. Display contact by name ");
             System.out.println(" 5. Display all contacts");
-            System.out.println(" 6. Save contacts to disk");
-            System.out.println(" 7. Read contacts from disk");
-            System.out.println(" 8. Exit ");
+            System.out.println(" 6. Exit ");
             try {
                 menu = input.nextInt();
             } catch (InputMismatchException ex) {
@@ -77,19 +74,13 @@ class ContactsOrgenizer {
                     System.out.println(contactsManager.getContacts());
                     break;
                 case 6:
-                    contactsManager.save();
-                    break;
-                case 7:
-                    contactsManager.read(fn);
-                    break;
-                case 8:
                     break;
                 default:
-                    System.out.println("** valid inputs are (1 - 8) **\n");
+                    System.out.println("** valid inputs are (1 - 6) **\n");
                     break;
             }
 
-        } while (menu != 8);
+        } while (menu != 6);
 
         contactsManager.save();
 

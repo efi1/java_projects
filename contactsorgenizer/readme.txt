@@ -26,10 +26,11 @@ This application contains the following:
 
 * you may find the entire source code at: https://github.com/efi1/java_projects
 
+
 RUNNING THE APPLICATION
 -----------------------
-1. Copy the jar artifact - contactsorgenizer-1.0-SNAPSHOT.jar - to your machine.
-2. Run it, by using the following command:
+- After building the project via maven, a jar artifict is created.
+- You may run it by using the following command:
     java -jar contactsorgenizer-1.0-SNAPSHOT.jar
 
 
@@ -42,17 +43,12 @@ When running this application, a menu is displayed:
  3. Update an exist contact
  4. Display contact by name
  5. Display all contacts
- 6. Save contacts to disk
- 7. Read contacts from disk
- 8. Exit
+ 6. Exit
 
  The user should select one of the options (1-8).
  After selecting one of the option, some more inputs are required from the user (for some of the above options);
  - Options (1,3), will ask the user to supply the contact elements (name, mobile and email) - each on a time.
  - Options (2,4), will ask the contact's name to be deleted (2) or to be displayed (4).
- - Option (6,7) saves the data (6) or read it (7) from your local machine, where it is saved.
- - Option (8) save the contact's changes, which the user made and exit the application.
- * reading the data from your local machine is done automatically. by starting the application.
-   If no precede data was saved to your local machine (i.e. if you run your application on your
-   local machine for the first time), no data is to be read.
+ - Option (6) exit the application.
+ * Any past data is saved and will be available for the user, whenever he starts the  application.
 

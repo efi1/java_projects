@@ -4,8 +4,12 @@ import java.util.Scanner;
 
 public class ContactsManager {
 
-    public Map<String, Contact> getContacts() {
-        return contacts;
+    public ContactsManager() {
+        read(fn);
+    }
+
+    public Collection<Contact> getContacts() {
+        return contacts.values();
     }
 
     public boolean add(String name, String mobile, String email) {
@@ -14,6 +18,7 @@ public class ContactsManager {
             return false;
         } else {
             contacts.put(name, newContact);
+            save(fn);
             return true;
         }
     }
@@ -22,6 +27,7 @@ public class ContactsManager {
         Contact newContact = new Contact(name, mobile, email);
         if (contacts.containsKey(name)) {
             contacts.put(name, newContact);
+            save(fn);
             return true;
         } else {
             return false;
@@ -31,6 +37,7 @@ public class ContactsManager {
     public boolean remove(String name) throws Exception {
         if (contacts.containsKey(name)) {
             contacts.remove(name);
+            save(fn);
             return true;
         } else {
             return false;
@@ -42,7 +49,7 @@ public class ContactsManager {
     }
 
     public void save() {
-        save("contents_data.txt");
+        save(fn);
     }
 
     public void save(String fn) {
@@ -70,15 +77,16 @@ public class ContactsManager {
             String currentLine;
             while (sc.hasNextLine()) {
                 currentLine = sc.nextLine();
-                String[] seprated_by_comma = currentLine.split(",");
-                for (String element : seprated_by_comma) {
-                    String[] key_and_value = element.split("=");
-                    contactValues.add(key_and_value[1]);
+                if (!currentLine.trim().isEmpty()) {
+                    String[] seprated_by_comma = currentLine.split(",");
+                    for (String element : seprated_by_comma) {
+                        String[] key_and_value = element.split("=");
+                        contactValues.add(key_and_value[1]);
+                    }
+                    this.add(contactValues.get(0), contactValues.get(1), contactValues.get(2));
+                    contactValues.clear();
                 }
-                this.add(contactValues.get(0), contactValues.get(1), contactValues.get(2));
-                contactValues.clear();
             }
-
             fis.close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -86,6 +94,7 @@ public class ContactsManager {
     }
 
     private Map<String, Contact> contacts = new HashMap<String, Contact>();
+    private String fn = "contents_data.txt";
 
 }
 
