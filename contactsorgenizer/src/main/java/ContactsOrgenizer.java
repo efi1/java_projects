@@ -81,7 +81,7 @@ class ContactsOrgenizer {
                     System.out.println(contactsManager.getContacts());
                     break;
                 case 6:
-                    contactsManager.save(contactsManager.getContacts(), fn);
+                    contactsManager.save();
                     break;
                 case 7:
                     contactsManager.read(fn);
@@ -95,7 +95,7 @@ class ContactsOrgenizer {
 
         } while (menu != 8);
 
-        contactsManager.save(contactsManager.getContacts(), fn);
+        contactsManager.save();
 
     }
     private void userContactInputs(Scanner input){
