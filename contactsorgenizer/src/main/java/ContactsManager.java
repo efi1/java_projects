@@ -10,7 +10,7 @@ public class ContactsManager {
     }
 
 
-    public void getSortedContacts() {
+    public void printSortedContacts() {
         Map<String, Contact> sortedContacts = new TreeMap<String, Contact>(contacts);
         for (Map.Entry<String, Contact> entry : sortedContacts.entrySet()) {
             System.out.println(entry.getValue());
@@ -18,7 +18,7 @@ public class ContactsManager {
     }
 
 
-    public void getContacts() {
+    public void printContacts() {
         for (Map.Entry<String, Contact> entry : contacts.entrySet()){
             System.out.println(entry.getValue());
         }

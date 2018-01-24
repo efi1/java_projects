@@ -72,9 +72,9 @@ class ContactsOrgenizer {
                 case 5:
                     choice = verifyUserInput(input, choice, "Enter 1: unsorted contacts, 2: sorted contacts ");
                         if (choice == 1) {
-                            contactsManager.getContacts();
+                            contactsManager.printContacts();
                         } else {
-                            contactsManager.getSortedContacts();
+                            contactsManager.printSortedContacts();
                         }
                     pressAnyKeyToContinue();
                     choice = 0;
@@ -129,7 +129,7 @@ class ContactsOrgenizer {
 
     private void pressAnyKeyToContinue()
     {
-        System.out.println("Press Enter key to continue...");
+        System.out.println("\nPress Enter key to continue...");
         try
         {
             System.in.read();
