@@ -2,14 +2,26 @@ import java.io.*;
 import java.util.*;
 import java.util.Scanner;
 
+
 public class ContactsManager {
 
     public ContactsManager() {
         read(fn);
     }
 
-    public Collection<Contact> getContacts() {
-        return contacts.values();
+
+    public void getSortedContacts() {
+        Map<String, Contact> sortedContacts = new TreeMap<String, Contact>(contacts);
+        for (Map.Entry<String, Contact> entry : sortedContacts.entrySet()) {
+            System.out.println(entry.getValue());
+        }
+    }
+
+
+    public void getContacts() {
+        for (Map.Entry<String, Contact> entry : contacts.entrySet()){
+            System.out.println(entry.getValue());
+        }
     }
 
     public boolean add(String name, String mobile, String email) {
@@ -92,6 +104,8 @@ public class ContactsManager {
             System.out.println(e.getMessage());
         }
     }
+
+
 
     private Map<String, Contact> contacts = new HashMap<String, Contact>();
     private String fn = "contents_data.txt";

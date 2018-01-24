@@ -7,7 +7,7 @@ class ContactsOrgenizer {
     void menu(ContactsManager contactsManager) throws Exception {
 
         Boolean respBool;
-        int choice;
+        int choice =0;
         int menu = 0;
         Scanner input = new Scanner(System.in);
 
@@ -23,7 +23,6 @@ class ContactsOrgenizer {
             } catch (InputMismatchException ex) {
                 input.nextLine();
             }
-            choice = 1;
             switch (menu) {
                 case 1:
                     while (choice != 2) {
@@ -71,8 +70,18 @@ class ContactsOrgenizer {
                     }
                     break;
                 case 5:
-                    System.out.println(contactsManager.getContacts());
+                    choice = verifyUserInput(input, choice, "Enter 1: unsorted contacts, 2: sorted contacts ");
+                        if (choice == 1) {
+                            contactsManager.getContacts();
+                        } else {
+                            contactsManager.getSortedContacts();
+                        }
+                    pressAnyKeyToContinue();
+                    choice = 0;
                     break;
+
+
+
                 case 6:
                     break;
                 default:
@@ -83,7 +92,6 @@ class ContactsOrgenizer {
         } while (menu != 6);
 
         contactsManager.save();
-
     }
 
     private void userContactInputs(Scanner input) {
@@ -95,22 +103,39 @@ class ContactsOrgenizer {
         email = input.next();
     }
 
+
     private int verifyUserInput(Scanner input, int choice) {
+        return verifyUserInput(input, choice, "Enter another? 1: Yes, 2: No");
+    }
+
+    private int verifyUserInput(Scanner input, int choice, String userInputMessage) {
         do {
-            System.out.println("Enter another? 1: Yes, 2: No");
-            try {
-                choice = input.nextInt();
-            } catch (InputMismatchException ex) {
-                System.out.println("\n** Error: Invalid input **\n");
-                input.nextLine();
-                choice = 2;
-                return choice;
+            System.out.format("%s\n", userInputMessage);
+            {
+                try {
+                    choice = input.nextInt();
+                } catch (InputMismatchException ex) {
+                    input.nextLine();
+                    choice = 3;
+                }
+
+            System.out.println("** Enter 1 or 2 only! **\n");
             }
         }
-        while (choice != 1 && choice != 2);
-        {
-        }
+            while (choice != 1 && choice != 2) ;
+
         return choice;
+    }
+
+    private void pressAnyKeyToContinue()
+    {
+        System.out.println("Press Enter key to continue...");
+        try
+        {
+            System.in.read();
+        }
+        catch(Exception e)
+        {}
     }
 
     private String name;
