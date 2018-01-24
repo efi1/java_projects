@@ -10,18 +10,14 @@ public class ContactsManager {
     }
 
 
-    public void printSortedContacts() {
+    public Collection<Contact> getSortedContacts() {
         Map<String, Contact> sortedContacts = new TreeMap<String, Contact>(contacts);
-        for (Map.Entry<String, Contact> entry : sortedContacts.entrySet()) {
-            System.out.println(entry.getValue());
+        return sortedContacts.values();
         }
-    }
 
 
-    public void printContacts() {
-        for (Map.Entry<String, Contact> entry : contacts.entrySet()){
-            System.out.println(entry.getValue());
-        }
+    public Collection<Contact> getContacts() {
+        return contacts.values();
     }
 
     public boolean add(String name, String mobile, String email) {

@@ -1,5 +1,4 @@
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.*;
 
 class ContactsOrgenizer {
 
@@ -7,11 +6,12 @@ class ContactsOrgenizer {
     void menu(ContactsManager contactsManager) throws Exception {
 
         Boolean respBool;
-        int choice =0;
+        int choice;
         int menu = 0;
         Scanner input = new Scanner(System.in);
 
         do {
+            choice = 0;
             System.out.println(" 1. Add a new contact ");
             System.out.println(" 2. Remove an exist contact ");
             System.out.println(" 3. Update an exist contact ");
@@ -43,7 +43,9 @@ class ContactsOrgenizer {
                         if (!respBool) {
                             System.out.format("a contact with the name %s doesn't exist", name).println();
                         }
-                        choice = verifyUserInput(input, choice);
+                        choice = verifyUserInput(input, choice, "Remove another contact? 1: Yes, 2: No");
+
+
                     }
                     break;
                 case 3:
@@ -71,17 +73,15 @@ class ContactsOrgenizer {
                     break;
                 case 5:
                     choice = verifyUserInput(input, choice, "Enter 1: unsorted contacts, 2: sorted contacts ");
-                        if (choice == 1) {
-                            contactsManager.printContacts();
-                        } else {
-                            contactsManager.printSortedContacts();
-                        }
+                    if (choice == 1) {
+                        Collection<Contact> contacts = contactsManager.getContacts();
+                        printContacts(contacts);
+                    } else {
+                        Collection<Contact> sortedContacts = contactsManager.getSortedContacts();
+                        printContacts(sortedContacts);
+                    }
                     pressAnyKeyToContinue();
-                    choice = 0;
                     break;
-
-
-
                 case 6:
                     break;
                 default:
@@ -90,7 +90,6 @@ class ContactsOrgenizer {
             }
 
         } while (menu != 6);
-
         contactsManager.save();
     }
 
@@ -109,33 +108,35 @@ class ContactsOrgenizer {
     }
 
     private int verifyUserInput(Scanner input, int choice, String userInputMessage) {
+
+
         do {
             System.out.format("%s\n", userInputMessage);
-            {
-                try {
-                    choice = input.nextInt();
-                } catch (InputMismatchException ex) {
-                    input.nextLine();
-                    choice = 3;
-                }
-
-            System.out.println("** Enter 1 or 2 only! **\n");
+            try {
+                choice = input.nextInt();
+            } catch (InputMismatchException ex) {
+                input.nextLine();
+            }
+            if (choice != 1 && choice != 2) {
+                System.out.println("** Enter 1 or 2 only! **\n");
             }
         }
-            while (choice != 1 && choice != 2) ;
-
+        while (choice != 1 && choice != 2);
         return choice;
     }
 
-    private void pressAnyKeyToContinue()
-    {
+    private void pressAnyKeyToContinue() {
         System.out.println("\nPress Enter key to continue...");
-        try
-        {
+        try {
             System.in.read();
+        } catch (Exception e) {
         }
-        catch(Exception e)
-        {}
+    }
+
+    private void printContacts(Collection<Contact> contacts) {
+        for (Contact contact : contacts) {
+            System.out.println(contact);
+        }
     }
 
     private String name;
