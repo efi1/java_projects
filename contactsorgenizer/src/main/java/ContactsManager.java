@@ -1,6 +1,8 @@
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
 import java.util.*;
-import java.util.Scanner;
 
 
 public class ContactsManager {
@@ -14,7 +16,6 @@ public class ContactsManager {
         Map<String, Contact> sortedContacts = new TreeMap<String, Contact>(contacts);
         return sortedContacts.values();
         }
-
 
     public Collection<Contact> getContacts() {
         return contacts.values();
@@ -104,7 +105,7 @@ public class ContactsManager {
 
 
     private Map<String, Contact> contacts = new HashMap<String, Contact>();
-    private String fn = "contents_data.txt";
+    private String fn = "orgenizer_branch/contents_data.txt";
 
 }
 
